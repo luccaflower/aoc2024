@@ -1,14 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_LEN 1000
+#define MAX_LEN 2500
+int process_list(FILE *input);
 void quicksort(int *arr, int low, int high);
 int process_list(FILE *input) {
   int left[MAX_LEN] = {0};
   int right[MAX_LEN] = {0};
   size_t n = 0;
-  while (fscanf(input, "%d %d", &(left[n]), &(right[n])) == 2) {
+  while (fscanf(input, "%d %d\n", &(left[n]), &(right[n])) == 2) {
     n++;
+    if (n >= MAX_LEN) {
+      puts("Ran out of array lenght");
+      return -1;
+    }
   }
   quicksort(left, 0, n - 1);
   quicksort(right, 0, n - 1);
